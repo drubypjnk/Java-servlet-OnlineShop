@@ -12,11 +12,11 @@
     </context-param>
     <context-param>
         <param-name>user</param-name>
-        <param-value>quangtvhe153307@fpt.edu.vn</param-value>
+        <param-value>dungbahe150633@fpt.edu.vn</param-value>
     </context-param>
     <context-param>
         <param-name>pass</param-name>
-        <param-value>Linhbui5</param-value>
+        <param-value>anhyeu123</param-value>
     </context-param>
     <context-param>
         <param-name>banking_system</param-name>
@@ -34,6 +34,24 @@
         <param-name>vnpay_qr_code</param-name>
         <param-value>images/banking_image/vn_pay.png</param-value>
     </context-param>
+    <!--config-->
+    <context-param>
+        <param-name>Url</param-name>
+        <param-value>http://sandbox.vnpayment.vn/paymentv2/vpcpay.html</param-value>
+    </context-param>
+    <context-param>
+        <param-name>ReturnUrl</param-name>
+        <param-value>http://localhost:8080/swp/vnpay</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TmnCode</param-name>
+        <param-value>GHHNT2HB</param-value>
+    </context-param>
+    <context-param>
+        <param-name>HashSecret</param-name>
+        <param-value>BAGAOHAPRHKQZASKQZASVPRSAKPXNYXS</param-value>
+    </context-param>
+    <!--end-->
     <welcome-file-list>
         <welcome-file>ckeditor</welcome-file>
     </welcome-file-list>
@@ -133,7 +151,7 @@
     </servlet>
     <servlet>
         <servlet-name>ShowCartServlet</servlet-name>
-        <servlet-class>controller.product.ShowCartServlet</servlet-class>
+        <servlet-class>controller.order.ShowCartServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ActiveAccount</servlet-name>
@@ -169,7 +187,7 @@
     </servlet>
     <servlet>
         <servlet-name>Cancel_Order</servlet-name>
-        <servlet-class>controller.product.Cancel_OrderServlet</servlet-class>
+        <servlet-class>controller.order.Cancel_OrderServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateAccount</servlet-name>
@@ -258,6 +276,10 @@
     <servlet>
         <servlet-name>AddSettingServlet</servlet-name>
         <servlet-class>controller.admin.AddSettingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VNPAYServlet</servlet-name>
+        <servlet-class>controller.order.VNPAYServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -431,6 +453,10 @@
     <servlet-mapping>
         <servlet-name>AddSettingServlet</servlet-name>
         <url-pattern>/admin/addsetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VNPAYServlet</servlet-name>
+        <url-pattern>/vnpay</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

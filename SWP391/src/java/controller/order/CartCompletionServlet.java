@@ -94,20 +94,31 @@ public class CartCompletionServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
             //get Information of cart contact
-            int oderID = Integer.parseInt(request.getParameter("orderID"));
+            int orderID = Integer.parseInt(request.getParameter("orderID"));
             OrderDAO orderDAO = new OrderDAO();
-            Order order = orderDAO.getOrderByOrderID(oderID);
+            Order order = orderDAO.getOrderByOrderID(orderID);
             int status = 2;//after choose paymentmethod
             String note = request.getParameter("note");
             int paymentID = Integer.parseInt(request.getParameter("payment"));
             String payment = getPaymentByID(paymentID);
+            //---------vnpay
+            if(paymentID==3){
+                request.setAttribute("order_id", orderID);
+                request.setAttribute("total_price", order.getTotal_price());
+                request.getRequestDispatcher("vnpay").forward(request, response);
+                return;
+            }
+            
+            //--------------------
             order.setPayment(payment);
             order.setStatus(status);
+            order.setNote(note);
             //set information to update order
             orderDAO.UpdateOrderInformation(order);  //update order
             //send mail
+            
             emailService.sendEmailComfirmUpdateOrder(getServletContext(), order.getShip_name(), order.getShip_email(), order.getOrder_id());
-            Cart cartSubmitted = orderDAO.getCartSubmitted(oderID);
+            Cart cartSubmitted = orderDAO.getCartSubmitted(orderID);
             request.setAttribute("order", order);
             request.setAttribute("cart", cartSubmitted);
             request.getRequestDispatcher("cartcompletion.jsp").forward(request, response);

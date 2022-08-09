@@ -6,9 +6,7 @@
 package controller.order;
 
 import controller.product.*;
-import static controller.product.ProcessServlet.getUpdateCart;
-import static controller.product.ProcessServlet.getUpdateCartContent;
-import static controller.product.ProcessServlet.separateCookieContent;
+
 import dal.OrderDAO;
 import dal.ProductDAO;
 import java.io.IOException;
